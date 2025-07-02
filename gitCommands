@@ -193,4 +193,11 @@ git remote -v
 
 ---
 
+```sh
+rm -rf <folder/repo name>
+```
+- To delete folder of local repository.
+
+---
+
 *Tip: You can specify the starting digits of commit or file IDs for most
