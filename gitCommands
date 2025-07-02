@@ -1,0 +1,196 @@
+# Git Commands
+
+---
+
+## Basic Workflow
+
+```sh
+git add <filename>
+```
+- **Stage changes**: Adds file(s) to the staging area.
+
+```sh
+git add .
+```
+- **Stage all changes**: Adds all modified and new files in the current directory and subdirectories.
+
+```sh
+git commit -m "commit message"
+```
+- **Commit staged changes**: Saves your staged changes to the repository history.
+
+```sh
+git status
+```
+- **Show status**: Displays the state of the working directory and staging area.
+
+```sh
+git log
+```
+- **View commit history**: Shows a list of commits.
+
+```sh
+git clone <repo_url>
+```
+- **Clone a repository**: Downloads a repository from a remote source.
+
+---
+
+## Fetch vs Pull
+
+```sh
+git fetch
+```
+- **Fetches** changes from the remote repository but does **not** merge them into your current branch.
+- Use when you want to see what others have pushed before merging.
+
+```sh
+git pull
+```
+- **Fetches** changes from the remote repository **and merges** them into your current branch.
+- Use when you want to update your branch with the latest changes from the remote.
+
+---
+
+## Stashing Commands
+
+```sh
+git stash
+```
+- Temporarily saves (stashes) your uncommitted changes so you can work on something else.
+
+```sh
+git stash list
+```
+- Shows a list of all stashed changes.
+
+```sh
+git stash pop
+```
+- Applies the most recently stashed changes and removes them from the stash list.
+
+```sh
+git stash apply
+```
+- Applies the most recently stashed changes but keeps them in the stash list.
+
+```sh
+git stash drop
+```
+- Deletes the most recent stash.
+
+---
+
+## Usage: Reset, Revert, Restore
+
+| Command                        | What It Does                                                                 | When to Use                                                                                 |
+|---------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `git reset <file>`              | Unstages a file (removes from staging area, keeps changes in working dir)    | You staged a file by mistake and want to unstage it                                         |
+| `git reset --soft <commit>`     | Moves HEAD to the specified commit, **keeps all changes staged**             | You want to undo commits but keep changes staged for recommit                               |
+| `git reset --mixed <commit>`    | Moves HEAD to the specified commit, **unstages changes but keeps them**      | Default reset. You want to undo commits and unstage changes (keep in working directory)     |
+| `git reset --hard <commit>`     | Moves HEAD to a specific commit, **discards all changes after that commit**  | You want to completely discard all changes after a certain commit (dangerous, irreversible) |
+| `git revert <commit>`           | Creates a new commit that undoes the changes of a previous commit            | You want to undo a commit without rewriting history (safe for shared branches)              |
+| `git restore <file>`            | Restores a file in your working directory to the last committed state        | You want to discard changes in a file (not staged or committed yet)                         |
+| `git restore --staged <file>`   | Unstages a file (moves from staging back to working directory)               | You want to remove a file from staging but keep your changes                                |
+
+**Summary:**
+- **reset --soft**: Undo commits, keep changes staged.
+- **reset --mixed** (default): Undo commits, unstage changes, keep changes in working directory.
+- **reset --hard**: Undo commits, discard all changes (irreversible).
+- **revert**: Safely undo a commit by creating a new commit that reverses it.
+- **restore**: Discard changes in files or unstage files (safer for working directory).
+
+---
+
+## Diff Commands
+
+```sh
+git diff
+```
+- Shows unstaged changes.
+
+```sh
+git diff --name-only
+```
+- Shows names of files with unstaged changes.
+
+```sh
+git diff --cached
+```
+- Shows staged changes.
+
+```sh
+git diff --cached --name-only
+```
+- Shows names of files with staged changes.
+
+---
+
+## Branching & Merging
+
+```sh
+git branch
+```
+- List all branches.
+
+```sh
+git checkout <branch>
+```
+- Switch to another branch.
+
+```sh
+git checkout -b <new-branch>
+```
+- Create and switch to a new branch.
+
+```sh
+git merge <branch>
+```
+- Merge another branch into the current branch.
+
+```sh
+git branch -d <branch>
+```
+- Delete a branch.
+
+---
+
+## Merge vs Rebase vs Fast-forward
+
+| Command/Concept         | What It Does                                                                                      | When to Use / Notes                                                                                 |
+|------------------------ |---------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `git merge <branch>`    | Combines changes from another branch into your current branch. Creates a **merge commit** if needed. | Use to preserve full branch history. Keeps the commit history as a tree with all branches visible.  |
+| `git rebase <branch>`   | Moves (reapplies) your commits on top of another branch. Creates a **linear history**.              | Use for a cleaner, linear history. Avoid rebasing shared/public branches.                            |
+| **Fast-forward merge**  | If no new commits on the target branch, just moves the branch pointer forward (no merge commit).    | Happens automatically if possible. No extra commit is created; history remains linear.              |
+
+**Example:**
+- If `main` has not changed since you branched off, merging or rebasing will result in a fast-forward.
+- If both branches have new commits, `merge` creates a merge commit, while `rebase` rewrites your branch's history.
+
+---
+
+## Advanced Commands
+
+```sh
+git cherry-pick <commit>
+```
+- Apply the changes from a specific commit onto your current branch.
+
+```sh
+git log --oneline --graph --all
+```
+- Visualize the commit history as a graph.
+
+```sh
+git clean -fd
+```
+- Remove untracked files and directories.
+
+```sh
+git remote -v
+```
+- Show remote repositories.
+
+---
+
+*Tip: You can specify the starting digits of commit or file IDs for most
