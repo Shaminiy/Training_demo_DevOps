@@ -1,0 +1,99 @@
+**Docker** : Docker is a platform/tool used to create, deploy, and run applications inside containers, which include all necessary dependencies, libraries, and configuration files — making the application portable and consistent across different environments.
+
+**Docker Objects** :
+1. image
+2. containers
+3. registry
+4. network
+5. volume
+
+**Docker workflow** :
+
+            Dockerfile 
+                | (build)
+            Dockerimage (artifact)
+                | (push)
+            Dockerregistry (Docker hub or private registeries)
+                | (pull)
+            container runtime
+                | (Run)
+            Docker container
+
+**Docker Vs VM:**
+Docker runs containers using the host's OS kernel (e.g., Linux), so it's lightweight and efficient.
+A VM simulates entire hardware, including its own OS, leading to more overhead.
+
+Real time example:
+
+Assume docker as living a flat in apartment while VM is like entire apartment/individual house. 
+Basically in flat, like cellular and things are shared across or remains same, here OS remains same
+Whereas in VM sharing is not there, each house has its own cellular etc , Each VM has each OS
+
+**Dockerfile**: A Dockerfile is a text file containing a set of instructions that Docker uses to build a custom image for your application
+
+**What Dockerfile Actually Does:**
+Builds your application into a Docker image.
+That image can then be:
+1. Pushed to a central registry (like Docker Hub or private registries).
+2. Pulled and run anywhere as a container.
+
+Dockerfile -> Set of instructions to build a Docker image
+Image -> Blueprint of your application (from Dockerfile)
+Container -> Running instance of an image
+Registry ->	Central place to store/share images (like Docker Hub)
+
+Docker stop vs docker kill
+
+Docker stop:
+-> Gracefully stops a running container. It sends a SIGTERM signal, giving the app time to shut down cleanly (like saving files, closing connections). After a timeout, it sends SIGKILL if the container hasn’t exited.
+
+Docker kill:
+-> Immediately terminates the container, by sending a SIGKILL signal.The app has no chance to shut down gracefully.Used when a container is unresponsive or needs to be force-stopped.
+
+COPY VS ADD
+
+COPY - Used to copy files or folders from your host machine (build context) into the image.
+
+ADD - Can do everything COPY does, plus extra features:
+    1. Can automatically extract tar files (.tar, .tar.gz, etc.)
+    2. Can download files from a URL (not recommended for production)
+
+RUN	-> At build time ->	Used to install packages, configure
+CMD	-> At runtime -> Used to start the app inside the container
+
+Docker Volumes:
+Managed by Docker itself. Stored under Docker's directory (/var/lib/docker/volumes/...).
+Example:
+docker run -v my_volume:/app/data my-image
+
+my-volume - named Docker volume.It tells Docker: Create or use a volume called my_volume, and mount it inside the container at /app/data
+
+Bind Mounts:
+You specify an exact path on your host system. Useful when you want direct access to host files (e.g., local source code).
+
+*Key Differences*
+Feature	                                       *Volume*	                                          *Bind Mount*
+Managed by Docker?	                           ✅ Yes	                                    ❌ No (you manage it)
+Data location	                         Docker internal storage	                          Exact host path you specify
+Use case	                                Container data, portability	                      Local dev, sharing source code
+Backup-friendly	                               ✅ Easier	                                           ⚠️ Manual
+Auto path creation	                       Yes (via volume name)	                         Yes (if parent dir exists)
+
+docker networks:
+
+When you run containers, Docker automatically connects them to a network so they can:
+1. Talk to each other (container-to-container)
+2. Talk to the outside world (like the internet)
+3. stay isolated (for security)
+
+Docker provides several built-in network types:
+1. Bridge(default):
+-> each container will have a default ip address - 172.17....
+-> if Microservices that need to talk to each other, use user-defined bridge for communication
+2. Host Network:
+-> No network isolation between container and host. The container uses the host’s IP and ports directly.
+3. none Network: 
+
+
+
+
