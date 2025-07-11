@@ -7,5 +7,6 @@ handson on git
 2. Kubernetes: https://github.com/piyushsachdeva/CKA-2024?tab=readme-ov-file
 3. sample application -   
            1.  https://github.com/piyushsachdeva/todoapp-docker
+
            2. https://github.com/docker/getting-started-app.git
 
