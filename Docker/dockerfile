@@ -1,0 +1,19 @@
+# *****************single image Dockerfile*****************
+# this Dockerfile is used to build a Docker image for a Node.js application
+# How it works:
+# 1. it will copy all the code from the current directory into the container
+# 2. it will install the dependencies using yarn
+# 3. copy all files into container creates a single image but it will not be optimized, lot of memory will be used
+
+FROM node:18-alpine
+# Set the working directory
+# WORKDIR - inside container, where the commands should be running
+# This is where the application code will be located
+WORKDIR /app
+# copy local files like package.json or app code into the remote container 
+# (.) means current directory
+COPY . . 
+RUN yarn install --production
+
+CMD ["node", "src/index.js"]
+EXPOSE 3000
