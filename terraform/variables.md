@@ -131,3 +131,6 @@ resource "aws_s3_bucket" "data" {
   bucket = local.bucket_name
 }
 ```
+
+## NOTE:
+1. if file name: stage.tfvars then ```terraform plan -var-file="stage.tfvars"```
