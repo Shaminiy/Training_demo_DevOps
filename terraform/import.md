@@ -2,6 +2,9 @@
 
 Terraform's import feature helps you bring resources that were created manually or outside of Terraform under Terraform management, without recreating them.
 
+In simple, This helps to import resources which are created manually or not part of the current statefile.
+for example: you manually created a VM in GCP, now you want to automate using terraform , then import option helps to get into terraform config.
+
 ---
 
 ## Why Import?
