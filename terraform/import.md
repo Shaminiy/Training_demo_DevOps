@@ -57,3 +57,16 @@ To import a resource using blocks, you must:
 2. Add a corresponding resource block to your configuration, or generate configuration for that resource.
 3. Run `terraform plan` to review how Terraform will import the resource(s).
 4. Apply the configuration to import the resources and update your Terraform state.
+
+
+
+
+
+## Drift Detection: 
+
+1. To refresh terraform statefile: terraform refresh ( not maintained or fully supported by terraform)
+2. setup audit logs, any manual change in infra , configure monitoring/logging tool like cloudwatch , on this logging tool setup a lambda function to detect any manual change is done if it is terraform managed resources.
+3. use terrafrom drift
+
+
+
