@@ -1,0 +1,118 @@
+######## OPERATING SYSTEM ########
+An operating system (OS) is system software that manages computer hardware and software resources, and provides services for computer programs.
+
+-> Memory Managment
+-> Process Managment
+-> Storage Managment
+-> I/O Managment
+-> Security Managment
+
+Why Linux:
+==========
+-> Opensource
+-> Flexible
+-> Security
+-> Multi user
+
+Kernel:
+======
+kernel is a computer program that acts as the core of an operating system (OS).
+
+
+Boot Process:
+============
+1) BIOS
+2) GRUB
+3) Kernel Take charge
+4) System Service
+5)Boot process end
+
+Before systemd -> Run level
+Ex: Run level 3 -> Text Only
+              5 -> GUI interface
+
+
+
+File operation:
+==============
+# list all files and directory:
+$ ls
+$ ls -al (Include all hiden file)
+$ ls -lrth ((With permission and file size)
+
+Create File:
+$ touch file.txt 
+$ touch file1 file2 file3 (Create multiple file)
+$ echo "test" >> file.txt
+
+Create Directory:
+$ mkdie test
+$ mkdir -p test/test1/test2 (create directory inside directory)
+
+Copy file / Dir:
+$ cp file.txt file1.txt
+$ cp -ap file.txt file1.txt (With same permission)
+
+Move or Rename
+$ mv file.txt file1.txt
+$ mv file file1
+
+Print content:
+$ echo "test"
+
+See content of file:
+$ cat file.txt
+
+$ tail -2 file.txt (last 2 line)
+$ head -2 file.txt (first 2 line)
+$ tail -f file.txt (get appends file)
+
+Get disk space:
+$ df
+$ df -h
+
+file size:
+$ du
+$ du -sh
+
+Get memory details:
+$ free
+$ free -m
+$ free -h
+
+Check process:
+$ ps
+$ ps -aux
+$ top
+
+VIM Editor:
+===========
+
+-> Normal Mode
+-> Insert Mode
+-> Visual Mode
+-> Command line Mode
+
+
+Press I for insert mode
+Press Esc for out of any mode
+Press V for Visual mode
+Press : for commandline mode
+
+:wq -> save the content and quit
+:q -> quit
+:q! -> quit forcefully without saving
+:wq! -> save the content and quit forcefull
+
+0: Beging of the line
+$: End of the line
+w: crusher next word
+dd: delete the line
+d$: delete till end of line
+/: serch 
+?: search after the cursor
+n: next occurance
+
+:%s/fruit/apple/g -> replace fruit with apple
+
+
